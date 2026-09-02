@@ -1,12 +1,31 @@
-class Solution:
-    def get_minimizer(self, iterations: int, learning_rate: float, init: int) -> float:
-        # Objective function: f(x) = x^2
-        # Derivative:         f'(x) = 2x
-        # Update rule:        x = x - learning_rate * f'(x)
-        # Round final answer to 5 decimal places
+import numpy as np
+from numpy.typing import NDArray
 
-        x = init
-        for i in range(iterations):
-            gradient = 2 * x
-            x = x - learning_rate * gradient
-        return round(x, 5)
+
+class Solution:
+    
+    def sigmoid(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
+        n = len(z)
+        result = []
+        for i in range(n):
+             sig = 1 / (1 + np.exp(-z[i] ) )
+             rounded_num = round(sig , 5)
+             result.append(rounded_num)
+            
+        return result
+    
+        
+
+        pass
+
+    def relu(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
+        # z is a 1D NumPy array
+        # Formula: max(0, z) element-wise
+        results = []
+        for i in range(len(z)):
+
+                results.append(max(0.0 , z[i]))
+
+        return results
+                
+        pass
